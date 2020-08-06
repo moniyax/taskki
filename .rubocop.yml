@@ -3,6 +3,7 @@ AllCops:
     - Rakefile
     - config.ru
     - Gemfile
+    - Capfile
   Exclude:
     - db/**
     - config/**
@@ -29,4 +30,6 @@ Style/HashTransformKeys:
 Style/HashTransformValues:
   Enabled: false
 Style/SlicingWithRange:
+  Enabled: false
+Bundler/OrderedGems:
   Enabled: false
