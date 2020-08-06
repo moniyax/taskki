@@ -12,7 +12,7 @@ set :deploy_to, "/home/#{fetch(:user)}/apps/#{fetch(:application)}"
 set :deploy_via, :remote_cache
 append :linked_files, '.rbenv-vars'
 
-append :linked_files, 'config/cable.yml'
+append :linked_files, 'config/cable.yml', 'config/database.yml'
 
 append :linked_dirs, 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'public/system'
 set :rbenv_ruby, File.read('.ruby-version').strip
