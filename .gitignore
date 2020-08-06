@@ -28,5 +28,5 @@
 /vendor/ 
 
 .rbenv-vars
-Procfile.dev
+Procfile
 
