@@ -1,8 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit'
-import counterReducer from '../features/counter/counterSlice'
+import tasksReducer from '../features/tasks/tasksSlice'
+import { reducer as formReducer } from 'redux-form'
+import ky from 'ky'
 
+window.ky = ky
 export default configureStore({
   reducer: {
-    counter: counterReducer,
+    tasks: tasksReducer,
+    form: formReducer,
   },
 })

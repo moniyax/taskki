@@ -1,10 +1,10 @@
 import React from 'react'
-import Todos from './components/todos'
+import Tasks from '../features/tasks/tasks'
 
 function App() {
   return (
     <div className="App">
-      <Todos />
+      <Tasks />
     </div>
   )
 }
