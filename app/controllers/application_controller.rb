@@ -3,6 +3,22 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :null_session
   around_action :handle_exceptions, if: proc { request.path.include?('/api') }
+  before_action :get_current_user
+  attr_accessor :current_user
+
+  def get_current_user
+    if (user = token_auth)
+      @current_user = user
+    else
+      render_json_error(:unauthorized, :unauthorized_request_error)
+    end
+  end
+
+  def token_auth
+    authenticate_with_http_token do |token, _options|
+      User.find_by(token: token)
+    end
+  end
 
   def render_json_validation_error(messages, tag)
     title = I18n.t("error_messages.#{tag}.title")
@@ -28,7 +44,7 @@ class ApplicationController < ActionController::Base
       tag: tag,
       title: title,
       code: code,
-      status: 400
+      status: status
     }, status: status
   end
 

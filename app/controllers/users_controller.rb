@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class UsersController < ApplicationController
-  before_action :set_user, only: %i[show update destroy]
+  skip_before_action :get_current_user, only: [:create]
 
   def create
     @user = User.new(user_params)
@@ -14,10 +14,6 @@ class UsersController < ApplicationController
   end
 
   private
-
-  def set_user
-    @user = User.find(params[:id])
-  end
 
   def user_params
     params.permit(:id, :email, :password, :username)

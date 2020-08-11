@@ -7,6 +7,8 @@ class User < ApplicationRecord
   validates :email, :username, presence: true
   validates :email, uniqueness: true
 
+  has_many :tasks
+
   def public_attributes
     attributes.slice('id', 'username', 'token', 'email')
   end

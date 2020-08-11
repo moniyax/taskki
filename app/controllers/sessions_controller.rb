@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class SessionsController < ApplicationController
+  skip_before_action :get_current_user
+
   def create
     login = Login.create params[:email], params[:password]
     unless login.valid?

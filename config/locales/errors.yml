@@ -18,3 +18,8 @@ en:
       code: 30100
       title: "Application Error"
       detail: "Something went wrong"
+
+    unauthorized_request_error:
+      code: 22200
+      title: "Unauthorized Request"
+      detail: "You are not authorized to access this resource"

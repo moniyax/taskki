@@ -1,33 +1,26 @@
 # frozen_string_literal: true
 
 class TasksController < ApplicationController
-  before_action :set_task, only: %i[show edit update destroy]
-
   rescue_from ActiveRecord::RecordNotFound do |_e|
     render_json_error :not_found, :task_not_found
   end
 
   def index
-    @tasks = Task.all
+    tasks = current_user.tasks
+    render json: tasks.map(&:public_attributes)
   end
 
-  def show; end
-
   def create
-    @task = Task.new(task_params)
-    unless @task.save
-      render_task_json_validation_error @task
+    task = current_user.tasks.build(task_params)
+    unless task.save
+      render_task_json_validation_error task
       return
     end
 
-    render json: @task.public_attributes
+    render json: task.public_attributes
   end
 
   private
-
-  def set_task
-    @task = Task.find(params[:id])
-  end
 
   def task_params
     params.permit(:id, :text, :completed)

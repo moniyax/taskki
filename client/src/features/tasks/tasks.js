@@ -1,20 +1,21 @@
 import React, { useEffect } from 'react'
 import { connect, useDispatch } from 'react-redux'
-import { getTasks, getTasksRequest, addTaskRequest } from './tasksSlice'
+import { getTasksRequest, addTaskRequest } from './taskRequests'
+import { getTasks } from './tasksSlice'
 import TaskForm from './taskForm'
 import t from 'prop-types'
 import Authentication from '../auth/authentication'
 
-const Tasks = ({ addTaskRequest, tasks, getTasksRequest }) => {
+const Tasks = ({ tasks }) => {
+  const dispatch = useDispatch()
+
   useEffect(() => {
-    getTasksRequest()
-  }, [getTasksRequest])
+    dispatch(getTasksRequest())
+  }, [dispatch])
 
   const submit = ({ taskText }) => {
-    addTaskRequest({ text: taskText })
+    dispatch(addTaskRequest({ text: taskText }))
   }
-
-  const dispatch = useDispatch()
 
   return (
     <Authentication>
@@ -41,21 +42,14 @@ const mapStateToProps = ({ tasks }) => ({
   tasks: getTasks(tasks),
 })
 
-const mapDispatchToProps = (dispatch) => ({
-  addTaskRequest: (text) => dispatch(addTaskRequest(text)),
-  getTasksRequest: () => dispatch(getTasksRequest()),
-})
-
 Tasks.propTypes = {
-  addTaskRequest: t.func.isRequired,
-  getTasksRequest: t.func.isRequired,
   tasks: t.arrayOf(
     t.shape({ text: t.string.isRequired, completed: t.bool.isRequired })
   ),
 }
-const TasksContainer = connect(mapStateToProps, mapDispatchToProps)(Tasks)
+const TasksContainer = connect(mapStateToProps)(Tasks)
 
-const AuthTask = () => {
+const AuthedTask = () => {
   return (
     <Authentication>
       <TasksContainer />
@@ -63,4 +57,4 @@ const AuthTask = () => {
   )
 }
 
-export default AuthTask
+export default AuthedTask

@@ -1,10 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { v4 as uuid } from 'uuid'
-import * as TasksApi from './tasksApi'
-import { normalize, schema } from 'normalizr'
-
-const taskSchema = new schema.Entity('tasks')
-const tasksSchema = [taskSchema]
 
 export const tasksSlice = createSlice({
   name: 'tasks',
@@ -63,36 +57,6 @@ export const {
   addTaskSuccess,
 } = tasksSlice.actions
 
-export const taskCount = (state) => state.ids.length
 export const getTasks = (state) => state.ids.map((id) => state.byId[id])
-
-export const getTasksRequest = () => async (dispatch) => {
-  try {
-    dispatch(getTasksStart())
-
-    const tasks = await TasksApi.getTasks()
-    const { entities, result } = normalize(tasks, tasksSchema)
-    const tasksById = entities.tasks
-    const taskIds = result
-
-    dispatch(getTasksSuccess({ tasksById, taskIds }))
-  } catch (error) {
-    dispatch(getTasksFailure())
-    console.error('getTasksFailure:', error)
-  }
-}
-
-export const addTaskRequest = (newTask) => async (dispatch) => {
-  try {
-    const { text } = newTask
-    const id = uuid()
-    dispatch(addTask({ id, text }))
-    const task = await TasksApi.postTask({ id, text })
-    dispatch(addTaskSuccess({ id: task.id, text: task.text, offline: false }))
-  } catch (error) {
-    dispatch(getTasksFailure())
-    console.error('addTaskFailure:', error)
-  }
-}
 
 export default tasksSlice.reducer
