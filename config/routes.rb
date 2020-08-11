@@ -5,5 +5,7 @@ Rails.application.routes.draw do
   get '/500' => 'errors#exception'
   scope :api do
     resources :tasks
+    resources :users
+    resource :session, only: %i[create destroy]
   end
 end

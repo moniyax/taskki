@@ -3,6 +3,10 @@
 class TasksController < ApplicationController
   before_action :set_task, only: %i[show edit update destroy]
 
+  rescue_from ActiveRecord::RecordNotFound do |_e|
+    render_json_error :not_found, :task_not_found
+  end
+
   def index
     @tasks = Task.all
   end
@@ -11,36 +15,12 @@ class TasksController < ApplicationController
 
   def create
     @task = Task.new(task_params)
-
-    respond_to do |format|
-      if @task.save
-        format.html { redirect_to @task, notice: 'Task was successfully created.' }
-        format.json { render :show, status: :created, location: @task }
-      else
-        format.html { render :new }
-        format.json { render json: @task.errors, status: :unprocessable_entity }
-      end
+    unless @task.save
+      render_task_json_validation_error @task
+      return
     end
-  end
 
-  def update
-    respond_to do |format|
-      if @task.update(task_params)
-        format.html { redirect_to @task, notice: 'Task was successfully updated.' }
-        format.json { render :show, status: :ok, location: @task }
-      else
-        format.html { render :edit }
-        format.json { render json: @task.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  def destroy
-    @task.destroy
-    respond_to do |format|
-      format.html { redirect_to tasks_url, notice: 'Task was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    render json: @task.public_attributes
   end
 
   private
@@ -50,6 +30,10 @@ class TasksController < ApplicationController
   end
 
   def task_params
-    params.require(:task).permit(:text, :completed)
+    params.permit(:id, :text, :completed)
+  end
+
+  def render_task_json_validation_error(task)
+    render_json_validation_error task.errors.full_messages, 'task_error'
   end
 end

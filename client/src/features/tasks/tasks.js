@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react'
-import { connect } from 'react-redux'
+import { connect, useDispatch } from 'react-redux'
 import { getTasks, getTasksRequest, addTaskRequest } from './tasksSlice'
-import TaskForm from '../taskForm/taskForm'
+import TaskForm from './taskForm'
 import t from 'prop-types'
+import Authentication from '../auth/authentication'
 
 const Tasks = ({ addTaskRequest, tasks, getTasksRequest }) => {
   useEffect(() => {
@@ -13,14 +14,26 @@ const Tasks = ({ addTaskRequest, tasks, getTasksRequest }) => {
     addTaskRequest({ text: taskText })
   }
 
+  const dispatch = useDispatch()
+
   return (
-    <div className="tasks">
-      {tasks.map((task) => (
-        <div key={task.id}>{task.text}</div>
-      ))}
-      <div></div>
-      <TaskForm onSubmit={submit} />
-    </div>
+    <Authentication>
+      <>
+        <button
+          onClick={() => {
+            dispatch({ type: 'logout' })
+          }}
+        >
+          Log out
+        </button>
+        <div className="tasks">
+          {tasks.map((task) => (
+            <div key={task.id}>{task.text}</div>
+          ))}
+          <TaskForm onSubmit={submit} />
+        </div>
+      </>
+    </Authentication>
   )
 }
 
@@ -40,5 +53,14 @@ Tasks.propTypes = {
     t.shape({ text: t.string.isRequired, completed: t.bool.isRequired })
   ),
 }
+const TasksContainer = connect(mapStateToProps, mapDispatchToProps)(Tasks)
 
-export default connect(mapStateToProps, mapDispatchToProps)(Tasks)
+const AuthTask = () => {
+  return (
+    <Authentication>
+      <TasksContainer />
+    </Authentication>
+  )
+}
+
+export default AuthTask
