@@ -6,8 +6,12 @@ import {
 import tasksReducer from '../features/tasks/tasksSlice'
 import authReducer from '../features/auth/authSlice'
 import { reducer as formReducer } from 'redux-form'
-import logger from 'redux-logger'
+import { createLogger } from 'redux-logger'
 import { load } from '../util/localStorageUtil'
+
+const logger = createLogger({
+  predicate: (_, action) => !action.type.startsWith('@@redux-form'),
+})
 
 const middleware = [...getDefaultMiddleware()]
 if (process.env.NODE_ENV === 'development') {

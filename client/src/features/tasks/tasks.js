@@ -5,9 +5,11 @@ import { getTasks } from './tasksSlice'
 import TaskForm from './taskForm'
 import t from 'prop-types'
 import Authentication from '../auth/authentication'
+import { useColorMode } from 'theme-ui'
 
 const Tasks = ({ tasks }) => {
   const dispatch = useDispatch()
+  const [colorMode, setColorMode] = useColorMode()
 
   useEffect(() => {
     dispatch(getTasksRequest())
@@ -19,21 +21,26 @@ const Tasks = ({ tasks }) => {
 
   return (
     <Authentication>
-      <>
-        <button
-          onClick={() => {
-            dispatch({ type: 'logout' })
-          }}
-        >
-          Log out
-        </button>
-        <div className="tasks">
-          {tasks.map((task) => (
-            <div key={task.id}>{task.text}</div>
-          ))}
-          <TaskForm onSubmit={submit} />
-        </div>
-      </>
+      <button
+        onClick={(e) => {
+          setColorMode(colorMode === 'default' ? 'dark' : 'default')
+        }}
+      >
+        {colorMode === 'default' ? 'Dark' : 'Light'} theme
+      </button>
+      <button
+        onClick={() => {
+          dispatch({ type: 'logout' })
+        }}
+      >
+        Log out
+      </button>
+      <div className="tasks">
+        {tasks.map((task) => (
+          <div key={task.id}>{task.text}</div>
+        ))}
+        <TaskForm onSubmit={submit} />
+      </div>
     </Authentication>
   )
 }
