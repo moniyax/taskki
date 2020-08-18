@@ -10,12 +10,11 @@ const App = () => {
     <div
       sx={{
         height: '100vh',
-        p: 6,
         fontSize: 2,
         fontFamily: 'body',
-        bg: 'n.9',
+        bg: 'n.10',
+        overflow: 'hidden',
       }}
-      className="App"
     >
       <Switch>
         <Route path="/signin" component={SignIn} />

@@ -1,4 +1,5 @@
-import React from 'react'
+/** @jsx jsx */
+import { jsx } from 'theme-ui'
 import { connect, useDispatch } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 import SignInForm from './signInForm'
@@ -17,7 +18,11 @@ const SignIn = ({ token, error }) => {
   /* Named err instead of error as there's an error prop from
       redux-form  that would override this one  */
 
-  return <SignInForm onSubmit={submit} err={error} />
+  return (
+    <div sx={{ height: '100vh', bg: 'n.10', overflow: 'hidden' }}>
+      <SignInForm onSubmit={submit} err={error} />
+    </div>
+  )
 }
 
 export default connect((state) => ({

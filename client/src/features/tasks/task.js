@@ -4,7 +4,12 @@ import t from 'prop-types'
 
 const Task = ({ id, text }) => (
   <div
-    sx={{ borderBottom: '1px solid #000', borderColor: 'n.6', py: 3, mb: 2 }}
+    sx={{
+      borderBottom: '1px solid #000',
+      borderColor: 'n.6',
+      py: 2,
+      mb: 2,
+    }}
     key={id}
   >
     {text}

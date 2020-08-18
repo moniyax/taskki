@@ -25,7 +25,7 @@ const Tasks = ({ tasks }) => {
   return (
     <Authentication>
       <button
-        onClick={(e) => {
+        onClick={() => {
           setColorMode(colorMode === 'default' ? 'dark' : 'default')
         }}
       >
@@ -38,7 +38,8 @@ const Tasks = ({ tasks }) => {
       >
         Log out
       </button>
-      <div sx={{ px: 8 }} className="tasks">
+
+      <div sx={{ px: 7, bg: 'n.10', maxWidth: 15, m: 'auto', fontSize: 2 }}>
         {tasks.map((task) => (
           <Task key={task.id} id={task.id} text={task.text} />
         ))}

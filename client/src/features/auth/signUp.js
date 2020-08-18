@@ -17,7 +17,11 @@ const SignUp = ({ token, error }) => {
   /* Named err instead of error as there's an error prop from
       redux-form  that would override this one  */
 
-  return <SignUpForm onSubmit={submit} err={error} />
+  return (
+    <div sx={{ height: '100vh', bg: 'n.10', overflow: 'hidden' }}>
+      <SignUpForm onSubmit={submit} err={error} />
+    </div>
+  )
 }
 
 export default connect((state) => ({
