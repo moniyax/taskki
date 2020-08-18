@@ -1,4 +1,5 @@
-import React from 'react'
+/** @jsx jsx */
+import { jsx } from 'theme-ui'
 import { Field, reduxForm, reset } from 'redux-form'
 import { connect } from 'react-redux'
 import t from 'prop-types'
@@ -17,9 +18,15 @@ const TaskForm = ({ handleSubmit, reset }) => {
       <Field
         component="textarea"
         name="taskText"
-        cols=" "
-        rows=" "
+        rows={3}
         onKeyDown={keyDownHandler(handleSubmit)}
+        sx={{
+          width: '100%',
+          borderRadius: 4,
+          borderColor: 'n.4',
+          p: 2,
+          outline: 'none',
+        }}
       ></Field>
     </form>
   )

@@ -74,6 +74,7 @@ const greys = [
   'hsl(210deg 16% 93%)',
   'hsl(210deg 17% 95%)',
   'hsl(210deg 17% 98%)',
+  'hsl(210deg 17% 100%)',
 ]
 
 const cyanGreens = [

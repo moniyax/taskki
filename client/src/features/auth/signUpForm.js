@@ -11,7 +11,7 @@ const loginHeader = {
 
 const login = {
   maxWidth: 13,
-  backgroundColor: 'n.9',
+  backgroundColor: 'n.10',
   mx: 'auto',
   mt: 7,
   p: 5,
@@ -136,7 +136,7 @@ const SignInForm = (props) => {
           textAlign: 'center',
         }}
       >
-        Already signed up? Go to <Link to="/signup">Login</Link>
+        Already signed up? Go to <Link to="/signin">Login</Link>
       </div>
     </form>
   )

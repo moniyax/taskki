@@ -10,7 +10,7 @@ const App = () => {
     <div
       sx={{
         height: '100vh',
-        p: 4,
+        p: 6,
         fontSize: 2,
         fontFamily: 'body',
         bg: 'n.9',

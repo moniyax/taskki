@@ -1,11 +1,14 @@
-import React, { useEffect } from 'react'
+/** @jsx jsx */
+import { useEffect } from 'react'
+import { jsx, useColorMode } from 'theme-ui'
 import { connect, useDispatch } from 'react-redux'
 import { getTasksRequest, addTaskRequest } from './taskRequests'
 import { getTasks } from './tasksSlice'
 import TaskForm from './taskForm'
 import t from 'prop-types'
 import Authentication from '../auth/authentication'
-import { useColorMode } from 'theme-ui'
+
+import Task from './task'
 
 const Tasks = ({ tasks }) => {
   const dispatch = useDispatch()
@@ -35,9 +38,9 @@ const Tasks = ({ tasks }) => {
       >
         Log out
       </button>
-      <div className="tasks">
+      <div sx={{ px: 8 }} className="tasks">
         {tasks.map((task) => (
-          <div key={task.id}>{task.text}</div>
+          <Task key={task.id} id={task.id} text={task.text} />
         ))}
         <TaskForm onSubmit={submit} />
       </div>
