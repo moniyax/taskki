@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect, useDispatch } from 'react-redux'
-import { Redirect, Link } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 import SignInForm from './signInForm'
 import t from 'prop-types'
 import { signInRequest, getToken, getSignInErrorMessage } from './authSlice'
@@ -8,21 +8,16 @@ import { signInRequest, getToken, getSignInErrorMessage } from './authSlice'
 const SignIn = ({ token, error }) => {
   const dispatch = useDispatch()
 
-  const submit = ({ email, password }) =>
-    dispatch(signInRequest({ email, password }))
+  const submit = (formValues) => dispatch(signInRequest(formValues))
 
   if (token) {
     return <Redirect to="/" />
   }
 
-  return (
-    <div className="auth-box">
-      <h2>Taskki</h2>
-      {error && <div>{error}</div>}
-      <SignInForm onSubmit={submit} />
-      <Link to="/signup">Sign Up</Link>
-    </div>
-  )
+  /* Named err instead of error as there's an error prop from
+      redux-form  that would override this one  */
+
+  return <SignInForm onSubmit={submit} err={error} />
 }
 
 export default connect((state) => ({

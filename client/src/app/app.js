@@ -13,7 +13,7 @@ const App = () => {
         p: 4,
         fontSize: 2,
         fontFamily: 'body',
-        bg: 'neutral.9',
+        bg: 'n.9',
       }}
       className="App"
     >

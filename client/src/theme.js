@@ -40,15 +40,16 @@ const fontWeights = [400, 500, 600, 700]
 const letterSpacings = [0.5, 1, 2]
 
 const shadows = [
-  '0 1px 3px hsla(0,0%,0%,.12);0 1px 2px hsla(0,0%,0%,.24);',
-  '0 3px 6px hsla(0,0%,0%,.15);0 2px 4px hsla(0,0%,0%,.12);',
-  '0 3px 6px hsla(0,0%,0%,.10);0 10px 20px hsla(0,0%,0%,.15);',
-  '0 15px 25px hsla(0,0%,0%,.15);0 5px 10px hsla(0,0%,0%,.5);',
-  '0 20px 40px hsla(0,0%,0%,.2)',
-  '0 1px 3px hsla(0,0%,0%,.12);0 1px 2px hsla(0,0%,0%,.24);',
-  '0 3px 6px hsla(0,0%,0%,.15);0 2px 4px hsla(0,0%,0%,.12);',
-  '0 3px 6px hsla(0,0%,0%,.10);0 10px 20px hsla(0,0%,0%,.15);',
-  '0 15px 25px hsla(0,0%,0%,.15);0 5px 10px hsla(0,0%,0%,.5);',
+  '0 1px 3px hsla(0,0%,0%,.2)',
+  '0 4px 6px hsla(0,0%,0%,.2)',
+  '0 5px 15px hsla(0,0%,0%,.2)',
+  '0 10px 24px hsla(0,0%,0%,.2)',
+  '0 15px 35px hsla(0,0%,0%,.2)',
+
+  '0 1px 3px hsla(0,0%,0%,.12),0 1px 2px hsla(0,0%,0%,.24)',
+  '0 3px 6px hsla(0,0%,0%,.15),0 2px 4px hsla(0,0%,0%,.12)',
+  '0 3px 6px hsla(0,0%,0%,.10),0 10px 20px hsla(0,0%,0%,.15)',
+  '0 15px 25px hsla(0,0%,0%,.15),0 5px 10px hsla(0,0%,0%,.5)',
   '0 20px 40px hsla(0,0%,0%,.2)',
 ]
 
@@ -116,7 +117,9 @@ const reds = [
 ]
 
 const neutral = greys
-const prime = blues
+const n = neutral
+const prime = reds
+const danger = reds
 
 const accent = cyanGreens
 const accent2 = greens
@@ -126,9 +129,11 @@ const dark = {
   background: neutral[0],
   primary: accent[2],
   neutral,
+  n,
   prime,
   accent,
   accent2,
+  danger,
 }
 
 const defaultColors = {
@@ -137,8 +142,10 @@ const defaultColors = {
   primary: accent[2],
   neutral,
   prime,
+  n,
   accent,
   accent2,
+  danger,
 }
 
 const colors = {
