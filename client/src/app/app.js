@@ -1,9 +1,9 @@
 /** @jsx jsx */
 import { jsx } from 'theme-ui'
-import Tasks from '../features/tasks/tasks'
 import { Route, Switch } from 'react-router-dom'
 import SignIn from '../features/auth/signIn'
 import SignUp from '../features/auth/signUp'
+import Home from '../features/layout/home'
 
 const App = () => {
   return (
@@ -13,13 +13,13 @@ const App = () => {
         fontSize: 2,
         fontFamily: 'body',
         bg: 'n.10',
-        overflow: 'hidden',
+        overflow: 'auto',
       }}
     >
       <Switch>
         <Route path="/signin" component={SignIn} />
         <Route path="/signup" component={SignUp} />
-        <Route exact path="/" component={Tasks} />
+        <Route exact path="/" component={Home} />
         {/* <Route component={NotFound} /> */}
       </Switch>
     </div>

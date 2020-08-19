@@ -8,6 +8,7 @@ const Task = ({ id, text }) => (
       borderBottom: '1px solid #000',
       borderColor: 'n.6',
       py: 2,
+      px: 1,
       mb: 2,
     }}
     key={id}

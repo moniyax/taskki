@@ -10,7 +10,7 @@ const loginHeader = {
 }
 
 const login = {
-  maxWidth: 13,
+  maxWidth: 14,
   backgroundColor: 'n.10',
   mx: 'auto',
   mt: 7,

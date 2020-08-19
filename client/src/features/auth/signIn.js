@@ -19,7 +19,7 @@ const SignIn = ({ token, error }) => {
       redux-form  that would override this one  */
 
   return (
-    <div sx={{ height: '100vh', bg: 'n.10', overflow: 'hidden' }}>
+    <div sx={{ height: '100vh', bg: 'n.10', overflow: 'auto' }}>
       <SignInForm onSubmit={submit} err={error} />
     </div>
   )

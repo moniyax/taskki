@@ -10,7 +10,7 @@ const loginHeader = {
 }
 
 const login = {
-  maxWidth: 13,
+  maxWidth: 14,
   backgroundColor: 'n.10',
   mx: 'auto',
   mt: 7,
@@ -32,7 +32,7 @@ const loginInput = {
 }
 const button = {
   width: '100%',
-  backgroundColor: 'prime.2',
+  backgroundColor: 'p.2',
   fontSize: 1,
   fontWeight: 3,
   p: 3,

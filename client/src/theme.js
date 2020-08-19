@@ -15,6 +15,7 @@ const space = [
   16,
   24,
   32,
+  40,
   48,
   64,
   96,
@@ -120,6 +121,7 @@ const reds = [
 const neutral = greys
 const n = neutral
 const prime = reds
+const p = prime
 const danger = reds
 
 const accent = cyanGreens
@@ -128,10 +130,9 @@ const accent2 = greens
 const dark = {
   text: neutral[5],
   background: neutral[0],
-  primary: accent[2],
-  neutral,
+  primary: p[2],
   n,
-  prime,
+  p,
   accent,
   accent2,
   danger,
@@ -140,10 +141,9 @@ const dark = {
 const defaultColors = {
   text: neutral[0],
   background: neutral[5],
-  primary: accent[2],
-  neutral,
-  prime,
+  primary: p[2],
   n,
+  p,
   accent,
   accent2,
   danger,
