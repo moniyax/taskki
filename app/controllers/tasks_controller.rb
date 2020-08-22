@@ -6,13 +6,23 @@ class TasksController < ApplicationController
   end
 
   def index
-    tasks = current_user.tasks
+    tasks = current_user.tasks.order :created_at
     render json: tasks.map(&:public_attributes)
   end
 
   def create
     task = current_user.tasks.build(task_params)
     unless task.save
+      render_task_json_validation_error task
+      return
+    end
+
+    render json: task.public_attributes
+  end
+
+  def update
+    task = current_user.tasks.find(task_params[:id])
+    unless task.update task_params
       render_task_json_validation_error task
       return
     end

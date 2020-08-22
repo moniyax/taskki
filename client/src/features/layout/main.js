@@ -19,7 +19,14 @@ const Main = () => {
 
   return (
     <div
-      sx={{ px: 7, bg: 'n.10', maxWidth: 15, m: 'auto', fontSize: 2, mt: 9 }}
+      sx={{
+        px: 7,
+        bg: 'n.10',
+        maxWidth: 17,
+        m: 'auto',
+        fontSize: 2,
+        mt: 9,
+      }}
     >
       <TaskList />
       <TaskForm onSubmit={submit} />

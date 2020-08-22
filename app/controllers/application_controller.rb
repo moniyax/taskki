@@ -62,7 +62,7 @@ class ApplicationController < ActionController::Base
       status = 400
     rescue StandardError => e
       log_application_error(e)
-      status = 505
+      status = 500
     end
     json_response(status) unless e.class == NilClass
   end

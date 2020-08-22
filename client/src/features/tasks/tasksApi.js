@@ -25,3 +25,12 @@ export const postTask = ({ id, text }) =>
       },
     })
     .json()
+
+export const updateTask = (taskFields) => {
+  const { id } = taskFields
+  return api
+    .patch(`/api/tasks/${id}`, {
+      json: taskFields,
+    })
+    .json()
+}

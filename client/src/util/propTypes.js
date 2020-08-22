@@ -94,6 +94,8 @@ export const taskProps = {
   id: guidPropType,
   text: t.string,
   completed: t.bool,
+  syncing: t.bool,
+  error: t.object,
 }
 
 export const messageDateStrType = (props, propName, componentName) => {

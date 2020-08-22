@@ -4,10 +4,16 @@ import { normalize, schema } from 'normalizr'
 import ky from 'ky'
 import {
   addTask,
+  addTaskStart,
+  addTaskSuccess,
+  addTaskFailure,
   getTasksStart,
   getTasksSuccess,
   getTasksFailure,
-  addTaskSuccess,
+  updateTask,
+  updateTaskStart,
+  updateTaskSuccess,
+  updateTaskFailure,
 } from './tasksSlice'
 
 const taskSchema = new schema.Entity('tasks')
@@ -23,27 +29,46 @@ export const getTasksRequest = () => async (dispatch) => {
     const taskIds = result
 
     dispatch(getTasksSuccess({ tasksById, taskIds }))
-  } catch (_error) {
-    if (!(_error instanceof ky.HTTPError)) throw _error
-    const error = await _error.response.json()
+  } catch (error) {
+    if (!(error instanceof ky.HTTPError)) throw error
+    const tasksFailure = await error.response.json()
 
-    dispatch(getTasksFailure(error))
-    console.error('getTasksFailure:', error)
+    dispatch(getTasksFailure(tasksFailure))
+    console.error('getTasksFailure:', tasksFailure)
   }
 }
 
-export const addTaskRequest = (newTask) => async (dispatch) => {
+export const addTaskRequest = (task) => async (dispatch) => {
+  const id = uuid()
+  const newTask = { ...task, id }
   try {
-    const { text } = newTask
-    const id = uuid()
-    dispatch(addTask({ id, text }))
-    const task = await TasksApi.postTask({ id, text })
-    dispatch(addTaskSuccess({ id: task.id, text: task.text }))
-  } catch (_error) {
-    if (!(_error instanceof ky.HTTPError)) throw _error
-    const error = await _error.response.json()
+    dispatch(addTask(newTask))
+    dispatch(addTaskStart(newTask))
 
-    dispatch(getTasksFailure(error))
-    console.error('addTaskFailure:', error)
+    const taskSuccess = await TasksApi.postTask(newTask)
+    dispatch(addTaskSuccess(taskSuccess))
+  } catch (error) {
+    if (!(error instanceof ky.HTTPError)) throw error
+    const taskFailure = await error.response.json()
+
+    dispatch(addTaskFailure({ ...taskFailure, id }))
+    console.error('addTaskFailure:', taskFailure)
+  }
+}
+
+export const updateTaskRequest = (taskFields) => async (dispatch) => {
+  const { id } = taskFields
+  try {
+    dispatch(updateTaskStart(taskFields))
+
+    dispatch(updateTask(taskFields))
+    const taskSuccess = await TasksApi.updateTask(taskFields)
+    dispatch(updateTaskSuccess(taskSuccess))
+  } catch (error) {
+    if (!(error instanceof ky.HTTPError)) throw error
+    const taskFailure = await error.response.json()
+
+    dispatch(updateTaskFailure({ ...taskFailure, id }))
+    console.error('updateTaskFailure:', taskFailure)
   }
 }

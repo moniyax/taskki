@@ -24,6 +24,7 @@ const Header = () => {
         height: 7,
         display: 'flex',
         justifyContent: 'space-between',
+        zIndex: 1,
       }}
     >
       <div className="appName">Taskki</div>
@@ -45,7 +46,11 @@ const Header = () => {
             fontWeight: 3,
           }}
         >
-          <img src={colorMode === 'default' ? moon : sun} sx={{ width: 4 }} />
+          <img
+            src={colorMode === 'default' ? moon : sun}
+            sx={{ width: 4 }}
+            alt="color mode"
+          />
         </button>
 
         <button
