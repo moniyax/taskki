@@ -7,8 +7,11 @@ import Task from './task'
 import { taskProps } from '../../util/propTypes'
 import { getTasks } from './tasksSlice'
 import { useCallback } from 'react'
+import Modal from '../../components/modal'
+import { useParams } from 'react-router-dom'
 
 const TaskList = ({ tasks }) => {
+  const { taskId } = useParams()
   const taskGroup = useCallback(
     (predicate) =>
       tasks
@@ -25,7 +28,8 @@ const TaskList = ({ tasks }) => {
   )
 
   return (
-    <div>
+    <div className="tasklist">
+      {taskId && tasks.length > 0 && <Modal taskId={taskId} />}
       {taskGroup((task) => !task.completed)}
       {taskGroup((task) => task.completed)}
     </div>

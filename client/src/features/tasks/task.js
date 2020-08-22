@@ -6,15 +6,13 @@ import { updateTaskRequest } from './taskRequests'
 import check from './check.svg'
 import circle from './circle.svg'
 import { taskProps } from '../../util/propTypes'
+import { Link } from 'react-router-dom'
 
 const taskStyle = (completed) => {
   const base = {
-    borderBottom: '1px solid #000',
-    borderColor: 'n.6',
-    py: 2,
     px: 1,
-    mb: 2,
     width: '100%',
+    py: 3,
   }
 
   const completedStyle = completed
@@ -26,44 +24,60 @@ const taskStyle = (completed) => {
 const Task = ({ id, text, completed }) => {
   const dispatch = useDispatch()
   return (
-    <div sx={{ display: 'flex' }}>
-      <div sx={taskStyle(completed)} key={id}>
-        <span
-          onClick={() => {
-            dispatch(
-              updateTaskRequest({
-                id,
-                completed: !completed,
-              })
-            )
+    <div
+      sx={{
+        display: 'flex',
+        borderBottom: '1px solid #000',
+        borderColor: 'n.6',
+        alignItems: 'center',
+      }}
+    >
+      <span
+        onClick={() => {
+          dispatch(
+            updateTaskRequest({
+              id,
+              completed: !completed,
+            })
+          )
+        }}
+      >
+        <input
+          type="checkbox"
+          defaultChecked={completed}
+          sx={{
+            display: 'none',
+            '& + span': {
+              color: 'red',
+              display: 'inline-block',
+              width: '16px',
+              height: '16px',
+              backgroundSize: '16px',
+              cursor: 'pointer',
+              mr: 1,
+              backgroundImage: `url(${circle})`,
+            },
+            '&:checked + span': {
+              backgroundImage: `url(${check})`,
+              border: 'none',
+            },
           }}
-        >
-          <input
-            type="checkbox"
-            defaultChecked={completed}
-            sx={{
-              display: 'none',
-              '& + span': {
-                color: 'red',
-                display: 'inline-block',
-                width: '16px',
-                height: '16px',
-                verticalAlign: 'middle',
-                cursor: 'pointer',
-                marginRight: '7px',
-                backgroundImage: `url(${circle})`,
-                backgroundSize: '16px',
-              },
-              '&:checked + span': {
-                backgroundImage: `url(${check})`,
-                border: 'none',
-              },
-            }}
-          />
-          <span></span>
-        </span>
+        />
+        <span></span>
+      </span>
+      <Link
+        to={`tasks/${id}`}
+        sx={{
+          color: 'n.1',
+          textDecoration: 'none',
+          width: '100%',
+          ...taskStyle(completed),
+        }}
+        key={id}
+      >
+        {' '}
         {text}
-      </div>
+      </Link>
     </div>
   )
 }

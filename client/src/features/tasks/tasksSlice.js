@@ -86,4 +86,6 @@ export const {
 
 export const getTasks = (state) => state.ids.map((id) => state.byId[id])
 
+export const getTask = (state, taskId) => state.tasks.byId[taskId]
+
 export default tasksSlice.reducer
