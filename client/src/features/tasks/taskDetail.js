@@ -1,14 +1,15 @@
 /** @jsx jsx */
 import { jsx, Close } from 'theme-ui'
-import { Link, useHistory, withRouter } from 'react-router-dom'
+import { useHistory, withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { getTask } from '../features/tasks/tasksSlice'
-import { taskProps } from '../util/propTypes'
+import { getTask } from './tasksSlice'
+import { taskProps } from '../../util/propTypes'
 import t from 'prop-types'
+import TaskDetailText from './taskDetailText'
 
 const modalBaackdrop = {
   position: 'absolute',
-  backgroundColor: 'hsl(0deg 0% 0% / 15%)',
+  backgroundColor: 'hsl(0,0,%,0%,0.15)',
   left: 0,
   right: 0,
   top: 0,
@@ -26,6 +27,7 @@ const modal = {
   border: '1px solid #ccc',
   boxShadow: 9,
   p: 4,
+  pt: 6,
   borderRadius: 4,
   color: 'n.1',
 }
@@ -40,7 +42,7 @@ const closeButton = {
   cursor: 'pointer',
 }
 
-const Modal = ({ task: { text } }) => {
+const TaskDetail = ({ task: { text } }) => {
   const history = useHistory()
   return (
     <div>
@@ -51,8 +53,8 @@ const Modal = ({ task: { text } }) => {
       ></div>
       <div className="modal" sx={modal} onClick={(e) => e.preventDefault()}>
         <Close sx={closeButton} onClick={() => history.push('/')} />
-        <h2>{text}</h2>
-        <div className="content" sx={{}}></div>
+        <TaskDetailText text={text} />
+        <div className="content"></div>
         <div className="actions" sx={actions}></div>
       </div>
     </div>
@@ -65,8 +67,8 @@ const mapStateToProps = (state, { match: { params } }) => {
   }
 }
 
-export default withRouter(connect(mapStateToProps)(Modal))
+export default withRouter(connect(mapStateToProps)(TaskDetail))
 
-Modal.propTypes = {
+TaskDetail.propTypes = {
   task: t.exact(taskProps),
 }

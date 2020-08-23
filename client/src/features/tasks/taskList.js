@@ -7,7 +7,7 @@ import Task from './task'
 import { taskProps } from '../../util/propTypes'
 import { getTasks } from './tasksSlice'
 import { useCallback } from 'react'
-import Modal from '../../components/modal'
+import Modal from './taskDetail'
 import { useParams } from 'react-router-dom'
 
 const TaskList = ({ tasks }) => {
