@@ -96,6 +96,8 @@ export const taskProps = {
   completed: t.bool,
   syncing: t.bool,
   error: t.object,
+  archived: t.bool,
+  createdAt: datePropType,
 }
 
 export const messageDateStrType = (props, propName, componentName) => {

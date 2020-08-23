@@ -1,8 +1,6 @@
 /** @jsx jsx */
 import { jsx } from 'theme-ui'
 import t from 'prop-types'
-import { useState } from 'react'
-import TaskTextBox from './taskTextBox'
 
 const textStyle = {
   fontSize: 5,
@@ -31,19 +29,4 @@ TaskTextLabel.propTypes = {
   text: t.string,
 }
 
-const TaskDetailsText = ({ text }) => {
-  const [editing, setEditing] = useState(false)
-
-  const detailText = editing ? (
-    <TaskTextBox setEditing={setEditing} text={text} />
-  ) : (
-    <TaskTextLabel setEditing={setEditing} text={text} />
-  )
-  return <div sx={{ mb: 4 }}>{detailText}</div>
-}
-
-TaskDetailsText.propTypes = {
-  text: t.string,
-}
-
-export default TaskDetailsText
+export default TaskTextLabel

@@ -161,6 +161,21 @@ const colors = {
   },
 }
 
+const text = {
+  default: {
+    color: 'text',
+    fontSize: 3,
+  },
+  caps: {
+    textTransform: 'uppercase',
+  },
+  heading: {
+    fontFamily: 'heading',
+    fontWeight: 'heading',
+    lineHeight: 'heading',
+  },
+}
+
 const theme = {
   fonts,
   colors,
@@ -172,6 +187,7 @@ const theme = {
   radii,
   letterSpacings,
   shadows,
+  text,
 }
 
 export default theme
