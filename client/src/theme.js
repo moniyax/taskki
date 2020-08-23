@@ -126,6 +126,8 @@ const danger = reds
 
 const accent = cyanGreens
 const accent2 = greens
+const a2 = accent2
+const a = accent
 
 const dark = {
   text: neutral[5],
@@ -133,7 +135,8 @@ const dark = {
   primary: p[2],
   n,
   p,
-  accent,
+  a,
+  a2,
   accent2,
   danger,
 }
@@ -144,6 +147,8 @@ const defaultColors = {
   primary: p[2],
   n,
   p,
+  a,
+  a2,
   accent,
   accent2,
   danger,

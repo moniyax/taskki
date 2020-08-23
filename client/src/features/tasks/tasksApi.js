@@ -34,3 +34,7 @@ export const updateTask = (taskFields) => {
     })
     .json()
 }
+
+export const deleteTask = ({ id }) => {
+  return api.delete(`/api/tasks/${id}`).json()
+}

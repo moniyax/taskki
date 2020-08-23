@@ -67,6 +67,28 @@ export const tasksSlice = createSlice({
       state.byId[id].syncing = false
       state.byId[id].error = payload
     },
+
+    deleteTask(state, { payload }) {
+      const { id } = payload
+      state.ids = state.ids.filter((_id) => _id !== id)
+      delete state.byId[id]
+    },
+    deleteTaskStart(state, { payload }) {
+      const { id } = payload
+      state.byId[id].syncing = true
+      state.byId[id].error = null
+    },
+    deleteTaskSuccess(state, { payload }) {
+      const { id } = payload
+      state.byId[id] = payload
+      state.byId[id].syncing = false
+      state.byId[id].error = null
+    },
+    deleteTaskFailure(state, { payload }) {
+      const { id } = payload
+      state.byId[id].syncing = false
+      state.byId[id].error = payload
+    },
   },
 })
 
@@ -82,9 +104,14 @@ export const {
   updateTaskStart,
   updateTaskSuccess,
   updateTaskFailure,
+  deleteTask,
+  deleteTaskStart,
+  deleteTaskSuccess,
+  deleteTaskFailure,
 } = tasksSlice.actions
 
-export const getTasks = (state) => state.ids.map((id) => state.byId[id])
+export const getTasks = (state) =>
+  state.ids.map((id) => state.byId[id]).filter((task) => !task.archived)
 
 export const getTask = (state, taskId) => state.tasks.byId[taskId]
 

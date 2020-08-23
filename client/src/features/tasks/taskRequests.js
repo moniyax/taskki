@@ -14,6 +14,10 @@ import {
   updateTaskStart,
   updateTaskSuccess,
   updateTaskFailure,
+  deleteTask,
+  deleteTaskStart,
+  deleteTaskSuccess,
+  deleteTaskFailure,
 } from './tasksSlice'
 
 const taskSchema = new schema.Entity('tasks')
@@ -70,5 +74,27 @@ export const updateTaskRequest = (taskFields) => async (dispatch) => {
 
     dispatch(updateTaskFailure({ ...taskFailure, id }))
     console.error('updateTaskFailure:', taskFailure)
+  }
+}
+
+export const archiveTaskRequest = ({ id }) =>
+  updateTaskRequest({
+    id,
+    archived: true,
+  })
+
+export const deleteTaskRequest = ({ id }) => async (dispatch) => {
+  try {
+    dispatch(deleteTaskStart({ id }))
+
+    dispatch(deleteTask({ id }))
+    const taskSuccess = await TasksApi.deleteTask({ id })
+    dispatch(deleteTaskSuccess(taskSuccess))
+  } catch (error) {
+    if (!(error instanceof ky.HTTPError)) throw error
+    const taskFailure = await error.response.json()
+
+    dispatch(deleteTaskFailure({ ...taskFailure, id }))
+    console.error('deleteTaskFailure:', taskFailure)
   }
 }

@@ -5,6 +5,6 @@ class Task < ApplicationRecord
   belongs_to :user
 
   def public_attributes
-    attributes.slice('id', 'text', 'completed')
+    attributes.slice('id', 'text', 'completed', 'archived')
   end
 end

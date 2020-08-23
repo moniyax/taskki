@@ -82,7 +82,7 @@ TextBox.propTypes = {
   text: t.string,
 }
 
-const TaskDetailText = ({ text }) => {
+const TaskDetailsText = ({ text }) => {
   const [editing, setEditing] = useState(false)
 
   return editing ? (
@@ -92,8 +92,8 @@ const TaskDetailText = ({ text }) => {
   )
 }
 
-TaskDetailText.propTypes = {
+TaskDetailsText.propTypes = {
   text: t.string,
 }
 
-export default TaskDetailText
+export default TaskDetailsText

@@ -30,10 +30,17 @@ class TasksController < ApplicationController
     render json: task.public_attributes
   end
 
+  def destroy
+    task = current_user.tasks.find(task_params[:id])
+    task.destroy
+
+    render json: {}
+  end
+
   private
 
   def task_params
-    params.permit(:id, :text, :completed)
+    params.permit(:id, :text, :completed, :archived)
   end
 
   def render_task_json_validation_error(task)
