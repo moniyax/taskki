@@ -6,22 +6,23 @@ import { useDispatch } from 'react-redux'
 import { updateTaskRequest } from './taskRequests'
 import { useParams } from 'react-router-dom'
 
-const textStyle = {
-  fontSize: 5,
-  fontWeight: 3,
+const notesInputStyle = {
   width: '100%',
   color: 'n.1',
+  outline: 'none',
+  borderColor: 'n.4',
+  borderRadius: 3,
 }
 
-const TaskTextBox = ({ setEditing, text }) => {
-  const textInput = useRef(null)
+const TaskNotesEdit = ({ setEditing, notes }) => {
+  const notesInput = useRef(null)
   const dispatch = useDispatch()
   const { taskId } = useParams()
 
   useEffect(() => {
-    textInput.current.focus()
+    notesInput.current.focus()
   })
-  const [inputVal, setInputVal] = useState(text)
+  const [inputVal, setInputVal] = useState(notes)
 
   const handleChange = (e) => {
     setInputVal(e.target.value)
@@ -39,27 +40,26 @@ const TaskTextBox = ({ setEditing, text }) => {
     updateText(e.target.value)
   }
 
-  const updateText = (text) => {
+  const updateText = (notes) => {
     setEditing(false)
-    dispatch(updateTaskRequest({ id: taskId, text }))
+    dispatch(updateTaskRequest({ id: taskId, notes }))
   }
 
   return (
-    <input
-      type="text"
-      sx={textStyle}
+    <textarea
+      sx={notesInputStyle}
       value={inputVal}
       onChange={handleChange}
       onKeyDown={handleKeyDown}
       onBlur={handleBlur}
-      ref={textInput}
+      ref={notesInput}
     />
   )
 }
 
-TaskTextBox.propTypes = {
+TaskNotesEdit.propTypes = {
   setEditing: t.func,
-  text: t.string,
+  notes: t.string,
 }
 
-export default TaskTextBox
+export default TaskNotesEdit

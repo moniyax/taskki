@@ -40,7 +40,7 @@ class TasksController < ApplicationController
   private
 
   def task_params
-    params.permit(:id, :text, :completed, :archived)
+    params.permit(:id, :text, :completed, :archived, :notes)
   end
 
   def render_task_json_validation_error(task)

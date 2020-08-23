@@ -8,6 +8,7 @@ import t from 'prop-types'
 import TaskDetailsText from './taskDetailsText'
 import TaskDetailsActions from './taskDetailsActions'
 import TaskDate from './taskDate'
+import TaskNotes from './taskNotesSection'
 
 const modalBackdrop = {
   position: 'absolute',
@@ -43,7 +44,7 @@ const closeButton = {
 
 const TaskDetails = ({ task }) => {
   const history = useHistory()
-  const { text, id, completed, createdAt } = task
+  const { text, id, completed, createdAt, notes } = task
 
   return (
     <div>
@@ -56,7 +57,7 @@ const TaskDetails = ({ task }) => {
         <div sx={{ p: 3, px: 5 }}>
           <Close sx={closeButton} onClick={() => history.push('/')} />
           <TaskDetailsText text={text} />
-          <div className="content"></div>
+          <TaskNotes notes={notes} />
           <TaskDate createdAt={createdAt} />
         </div>
         <TaskDetailsActions id={id} completed={completed} />
