@@ -11,23 +11,12 @@ const container = {
   flex: 1,
 }
 
-const projects = [
-  { name: 'Niceties' },
-  { name: 'Niceties' },
-  { name: 'Niceties' },
-  { name: 'Niceties' },
-  { name: 'Niceties' },
-  { name: 'Niceties' },
-  { name: 'Niceties' },
-  { name: 'Niceties' },
-]
-
 const Home = () => (
   <Authentication>
     <React.Fragment>
       <Header />
       <div sx={container}>
-        <Projects projects={projects} />
+        <Projects />
         <Main />
       </div>
     </React.Fragment>
