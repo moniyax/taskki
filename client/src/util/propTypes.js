@@ -100,6 +100,15 @@ export const taskProps = {
   createdAt: datePropType,
 }
 
+export const projectProps = {
+  id: guidPropType,
+  name: t.string,
+  syncing: t.bool,
+  error: t.object,
+  archived: t.bool,
+  createdAt: datePropType,
+}
+
 export const messageDateStrType = (props, propName, componentName) => {
   if (!props[propName]) return
   if (

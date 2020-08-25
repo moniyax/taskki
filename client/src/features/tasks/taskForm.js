@@ -23,7 +23,8 @@ const TaskForm = ({ handleSubmit, reset }) => {
         sx={{
           width: '100%',
           borderRadius: 4,
-          borderColor: 'n.3',
+          borderColor: 'n.4',
+          color: 'n.1',
           p: 2,
           outline: 'none',
         }}

@@ -14,6 +14,8 @@ const App = () => {
         fontFamily: 'body',
         bg: 'n.10',
         overflow: 'auto',
+        display: 'flex',
+        flexDirection: 'column',
       }}
     >
       <Switch>

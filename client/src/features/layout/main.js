@@ -22,10 +22,8 @@ const Main = () => {
       sx={{
         px: 7,
         bg: 'n.10',
-        maxWidth: 17,
-        m: 'auto',
         fontSize: 2,
-        mt: 9,
+        flex: '1 1',
       }}
     >
       <TaskList />
