@@ -4,6 +4,7 @@ import {
   combineReducers,
 } from '@reduxjs/toolkit'
 import tasksReducer from '../features/tasks/tasksSlice'
+import projectsReducer from '../features/projects/projectsSlice'
 import authReducer from '../features/auth/authSlice'
 import { reducer as formReducer } from 'redux-form'
 import { createLogger } from 'redux-logger'
@@ -20,6 +21,7 @@ if (process.env.NODE_ENV === 'development') {
 
 const combinedReducer = combineReducers({
   tasks: tasksReducer,
+  projects: projectsReducer,
   form: formReducer,
   auth: authReducer,
 })

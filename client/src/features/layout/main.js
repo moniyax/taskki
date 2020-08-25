@@ -5,12 +5,17 @@ import { useDispatch } from 'react-redux'
 import { getTasksRequest, addTaskRequest } from '../tasks/taskRequests'
 import TaskList from '../tasks/taskList'
 import TaskForm from '../tasks/taskForm'
+import { getProjectsRequest } from '../projects/projectRequests'
 
 const Main = () => {
   const dispatch = useDispatch()
 
   useEffect(() => {
     dispatch(getTasksRequest())
+  }, [dispatch])
+
+  useEffect(() => {
+    dispatch(getProjectsRequest())
   }, [dispatch])
 
   const submit = ({ taskText }) => {
