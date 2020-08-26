@@ -32,7 +32,7 @@ const completeButtonStyle = {
   cursor: 'pointer',
 }
 
-const TaskDetailsActions = ({ id, completed }) => {
+const TaskDetailsActions = ({ id, completed, projectId }) => {
   const dispatch = useDispatch()
   const history = useHistory()
 
@@ -51,7 +51,7 @@ const TaskDetailsActions = ({ id, completed }) => {
         id,
       })
     )
-    history.push('/')
+    history.push(`/projects/${projectId}`)
   }
 
   return (

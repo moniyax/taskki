@@ -55,12 +55,19 @@ const TaskDetails = ({ task }) => {
       ></div>
       <div className="modal" sx={modal} onClick={(e) => e.preventDefault()}>
         <div sx={{ p: 3, px: 5 }}>
-          <Close sx={closeButton} onClick={() => history.push('/')} />
+          <Close
+            sx={closeButton}
+            onClick={() => history.push(`/projects/${task.projectId}`)}
+          />
           <TaskDetailsText text={text} />
           <TaskNotes notes={notes} />
           <TaskDate createdAt={createdAt} />
         </div>
-        <TaskDetailsActions id={id} completed={completed} />
+        <TaskDetailsActions
+          id={id}
+          completed={completed}
+          projectId={task.projectId}
+        />
       </div>
     </div>
   )
