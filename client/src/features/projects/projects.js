@@ -1,10 +1,7 @@
 /** @jsx jsx */
 import { jsx } from 'theme-ui'
-import t from 'prop-types'
-import { projectProps } from '../../util/propTypes'
-import Project from './project'
-import { connect } from 'react-redux'
-import { getProjects } from './projectsSlice'
+import ProjectList from './projectList'
+import AddProject from './addProject'
 
 const projectsStyle = {
   width: '300px',
@@ -14,23 +11,14 @@ const projectsStyle = {
   pl: 9,
 }
 
-const Projects = ({ projects }) => {
+const Projects = () => {
   return (
     <ul sx={projectsStyle}>
       <h2 sx={{ fontSize: 2, fontWeight: 3 }}>Projects</h2>
-      {projects.map((project) => (
-        <Project key={project.id} id={project.id} name={project.name} />
-      ))}
+      <AddProject/>
+      <ProjectList />
     </ul>
   )
 }
 
-const mapStateToProps = ({ projects }) => ({
-  projects: getProjects(projects),
-})
-
-Projects.propTypes = {
-  projects: t.arrayOf(t.exact(projectProps)).isRequired,
-}
-
-export default connect(mapStateToProps)(Projects)
+export default Projects

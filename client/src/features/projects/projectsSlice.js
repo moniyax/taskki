@@ -30,7 +30,7 @@ export const projectsSlice = createSlice({
     addProject(state, { payload }) {
       const { id, text } = payload
       state.byId[id] = { id, text, completed: false }
-      state.ids.push(id)
+      state.ids.unshift(id)
     },
     addProjectStart(state, { payload }) {
       const { id } = payload

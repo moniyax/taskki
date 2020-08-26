@@ -2,7 +2,7 @@
 
 class ProjectsController < ApplicationController
   def index
-    projects = current_user.projects.order :created_at
+    projects = current_user.projects.order(created_at: :desc)
     render json: projects.map(&:public_attributes)
   end
 

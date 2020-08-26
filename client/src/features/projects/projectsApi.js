@@ -16,12 +16,12 @@ const api = ky.extend({
 
 export const getProjects = () => api.get('/api/projects').json()
 
-export const postProject = ({ id, text }) =>
+export const postProject = ({ id, name }) =>
   api
     .post('/api/projects', {
       json: {
         id,
-        text,
+        name,
       },
     })
     .json()
