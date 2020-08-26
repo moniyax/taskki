@@ -6,12 +6,14 @@ class TasksController < ApplicationController
   end
 
   def index
-    tasks = current_user.tasks.order :created_at
+    project = current_user.projects.find params[:project_id]
+    tasks = project.tasks.order :created_at
     render json: tasks.map(&:public_attributes)
   end
 
   def create
-    task = current_user.tasks.build(task_params)
+    project = current_user.projects.find params[:project_id]
+    task = project.tasks.build(task_params)
     unless task.save
       render_task_json_validation_error task
       return
@@ -40,7 +42,7 @@ class TasksController < ApplicationController
   private
 
   def task_params
-    params.permit(:id, :text, :completed, :archived, :notes)
+    params.permit(:id, :text, :completed, :archived, :notes, :project_id)
   end
 
   def render_task_json_validation_error(task)

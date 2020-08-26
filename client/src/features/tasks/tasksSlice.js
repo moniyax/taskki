@@ -6,6 +6,7 @@ export const tasksSlice = createSlice({
     byId: {},
     ids: [],
     loading: false,
+    fetched: false,
     error: null,
   },
   reducers: {
@@ -18,6 +19,7 @@ export const tasksSlice = createSlice({
       state.byId = tasksById
       state.ids = taskIds
       state.loading = false
+      state.fetched = true
       state.error = null
     },
     getTasksFailure(state, action) {

@@ -23,11 +23,11 @@ import {
 const taskSchema = new schema.Entity('tasks')
 const tasksSchema = [taskSchema]
 
-export const getTasksRequest = () => async (dispatch) => {
+export const getTasksRequest = ({ projectId }) => async (dispatch) => {
   try {
     dispatch(getTasksStart())
 
-    const tasks = await TasksApi.getTasks()
+    const tasks = await TasksApi.getTasks({ projectId })
     const { entities, result } = normalize(tasks, tasksSchema)
     const tasksById = entities.tasks || {}
     const taskIds = result

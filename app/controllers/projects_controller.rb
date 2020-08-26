@@ -38,7 +38,7 @@ class ProjectsController < ApplicationController
   private
 
   def project_params
-    params.permit(:name, :inbox)
+    params.permit(:id, :name, :inbox)
   end
 
   def render_project_json_validation_error(project)

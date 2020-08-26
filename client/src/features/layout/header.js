@@ -3,6 +3,7 @@ import { jsx, useColorMode } from 'theme-ui'
 import { useDispatch } from 'react-redux'
 import moon from './moon.svg'
 import sun from './sun.svg'
+import { Link } from 'react-router-dom'
 
 const Header = () => {
   const dispatch = useDispatch()
@@ -23,7 +24,9 @@ const Header = () => {
         zIndex: 1,
       }}
     >
-      <div className="appName">Taskki</div>
+      <div className="appName">
+        <Link to="/">Taskki</Link>
+      </div>
       <div sx={{ display: 'flex' }}>
         <button
           onClick={() => {

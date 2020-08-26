@@ -14,11 +14,13 @@ const api = ky.extend({
   },
 })
 
-export const getTasks = () => api.get('/api/tasks').json()
+export const getTasks = ({ projectId }) => {
+  return api.get(`/api/projects/${projectId}/tasks`).json()
+}
 
-export const postTask = ({ id, text }) =>
+export const postTask = ({ id, text, projectId }) =>
   api
-    .post('/api/tasks', {
+    .post(`/api/projects/${projectId}/tasks`, {
       json: {
         id,
         text,

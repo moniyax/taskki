@@ -6,6 +6,7 @@ export const projectsSlice = createSlice({
     byId: {},
     ids: [],
     loading: false,
+    fetched: false,
     error: null,
   },
   reducers: {
@@ -19,6 +20,7 @@ export const projectsSlice = createSlice({
       state.ids = projectIds
       state.loading = false
       state.error = null
+      state.fetched = true
     },
     getProjectsFailure(state, action) {
       state.loading = false
@@ -112,6 +114,8 @@ export const {
 
 export const getProjects = (state) =>
   state.ids.map((id) => state.byId[id]).filter((project) => !project.archived)
+
+export const getIsProjectsFetched = (state) => state.fetched
 
 export const getProject = (state, projectId) => state.projects.byId[projectId]
 

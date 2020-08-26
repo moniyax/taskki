@@ -21,7 +21,7 @@ const taskStyle = (completed) => {
   return { ...base, ...completedStyle }
 }
 
-const Task = ({ id, text, completed }) => {
+const Task = ({ id, text, completed, projectId }) => {
   const dispatch = useDispatch()
   return (
     <div
@@ -66,7 +66,7 @@ const Task = ({ id, text, completed }) => {
         <span></span>
       </span>
       <Link
-        to={`tasks/${id}`}
+        to={`/projects/${projectId}/tasks/${id}`}
         sx={{
           color: 'n.1',
           textDecoration: 'none',
@@ -75,7 +75,6 @@ const Task = ({ id, text, completed }) => {
         }}
         key={id}
       >
-        {' '}
         {text}
       </Link>
     </div>

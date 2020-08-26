@@ -51,7 +51,7 @@ const TaskDetails = ({ task }) => {
       <div
         className="modalBackdrop"
         sx={modalBackdrop}
-        onClick={() => history.push('/')}
+        onClick={() => history.push(`/projects/${task.projectId}`)}
       ></div>
       <div className="modal" sx={modal} onClick={(e) => e.preventDefault()}>
         <div sx={{ p: 3, px: 5 }}>

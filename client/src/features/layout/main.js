@@ -2,24 +2,23 @@
 import { useEffect } from 'react'
 import { jsx } from 'theme-ui'
 import { useDispatch } from 'react-redux'
-import { getTasksRequest, addTaskRequest } from '../tasks/taskRequests'
+import { addTaskRequest } from '../tasks/taskRequests'
 import TaskList from '../tasks/taskList'
 import TaskForm from '../tasks/taskForm'
 import { getProjectsRequest } from '../projects/projectRequests'
+import { useParams } from 'react-router-dom'
 
 const Main = () => {
-  const dispatch = useDispatch()
+  const { projectId } = useParams()
 
-  useEffect(() => {
-    dispatch(getTasksRequest())
-  }, [dispatch])
+  const dispatch = useDispatch()
 
   useEffect(() => {
     dispatch(getProjectsRequest())
   }, [dispatch])
 
   const submit = ({ taskText }) => {
-    dispatch(addTaskRequest({ text: taskText }))
+    dispatch(addTaskRequest({ text: taskText, projectId }))
   }
 
   return (
