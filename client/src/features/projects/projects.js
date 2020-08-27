@@ -2,22 +2,31 @@
 import { jsx } from 'theme-ui'
 import ProjectList from './projectList'
 import AddProject from './addProject'
+import InboxLink from './inboxLink'
 
 const projectsStyle = {
-  width: '300px',
-  bg: 'n.8',
-  m: '0',
+  m: 0,
   listStyleType: 'none',
-  pl: 9,
+  p: 0,
 }
 
 const Projects = () => {
   return (
-    <ul sx={projectsStyle}>
+    <div
+      sx={{
+        width: '300px',
+        pl: 9,
+        bg: 'n.8',
+      }}
+    >
       <h2 sx={{ fontSize: 2, fontWeight: 3 }}>Projects</h2>
-      <AddProject/>
-      <ProjectList />
-    </ul>
+
+      <ul sx={projectsStyle}>
+        <InboxLink />
+        <AddProject />
+        <ProjectList />
+      </ul>
+    </div>
   )
 }
 

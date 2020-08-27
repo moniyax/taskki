@@ -10,6 +10,12 @@ class UsersController < ApplicationController
       return
     end
 
+    project = @user.projects.build(name: 'Inbox', inbox: true)
+    unless project.save
+      render_project_json_validation_error project
+      return
+    end
+
     render json: @user.public_attributes
   end
 
@@ -21,5 +27,9 @@ class UsersController < ApplicationController
 
   def render_user_json_validation_error(user)
     render_json_validation_error user.errors.full_messages, 'sign_up_error'
+  end
+
+  def render_project_json_validation_error(project)
+    render_json_validation_error project.errors.full_messages, 'project_error'
   end
 end

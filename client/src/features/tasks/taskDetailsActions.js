@@ -69,6 +69,7 @@ const TaskDetailsActions = ({ id, completed, projectId }) => {
 TaskDetailsActions.propTypes = {
   id: guidPropType,
   completed: t.bool,
+  projectId: guidPropType,
 }
 
 export default TaskDetailsActions

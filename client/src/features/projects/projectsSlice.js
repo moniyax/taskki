@@ -28,8 +28,8 @@ export const projectsSlice = createSlice({
     },
 
     addProject(state, { payload }) {
-      const { id, text } = payload
-      state.byId[id] = { id, text, completed: false }
+      const { id, name } = payload
+      state.byId[id] = { id, name, inbox: false }
       state.ids.unshift(id)
     },
     addProjectStart(state, { payload }) {
@@ -112,11 +112,15 @@ export const {
   deleteProjectFailure,
 } = projectsSlice.actions
 
-export const getProjects = (state) =>
-  state.ids.map((id) => state.byId[id]).filter((project) => !project.archived)
+export const getProjects = (state) => {
+  return state.ids
+    .map((id) => state.byId[id])
+    .filter((project) => !project.archived && !project.inbox)
+}
 
 export const getIsProjectsFetched = (state) => state.fetched
 
-export const getProject = (state, projectId) => state.projects.byId[projectId]
+export const getInbox = (state) =>
+  Object.values(state.byId).filter((project) => project.inbox)
 
 export default projectsSlice.reducer

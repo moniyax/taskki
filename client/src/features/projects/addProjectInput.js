@@ -33,10 +33,6 @@ const AddProjectInput = ({ setEditing }) => {
     }
   }
 
-  const handleBlur = (e) => {
-    updateText(e.target.value)
-  }
-
   const updateText = (name) => {
     setEditing(false)
     dispatch(addProjectRequest({ name }))
@@ -49,7 +45,6 @@ const AddProjectInput = ({ setEditing }) => {
       value={inputVal}
       onChange={handleChange}
       onKeyDown={handleKeyDown}
-      onBlur={handleBlur}
       ref={textInput}
     />
   )
