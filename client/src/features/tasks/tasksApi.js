@@ -28,11 +28,11 @@ export const postTask = ({ id, text, projectId }) =>
     })
     .json()
 
-export const updateTask = (taskFields) => {
+export const updateTask = ({ dueDate, ...taskFields }) => {
   const { id } = taskFields
   return api
     .patch(`/api/tasks/${id}`, {
-      json: taskFields,
+      json: { ...taskFields, due_date: dueDate },
     })
     .json()
 }

@@ -36,6 +36,7 @@ export const taskProps = {
   error: t.object,
   archived: t.bool,
   createdAt: datePropType,
+  dueDate: datePropType,
 }
 
 export const projectProps = {

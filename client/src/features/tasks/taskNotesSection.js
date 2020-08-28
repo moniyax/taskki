@@ -3,6 +3,7 @@ import { jsx, Text } from 'theme-ui'
 import t from 'prop-types'
 import TaskNotesEdit from './taskNotesEdit'
 import { useState } from 'react'
+import TaskDetailsSectionHeader from './taskDetailsSectionHeader'
 
 const TaskNotesDisplay = ({ notes, setEditing }) => (
   <div
@@ -83,10 +84,7 @@ TaskNotesBody.propTypes = {
 
 const TaskNotesSection = ({ notes }) => (
   <div sx={{ mb: 5 }}>
-    <Text sx={{ fontSize: 1, color: 'n.3', mb: 2 }} variant="caps">
-      NOTES
-    </Text>
-
+    <TaskDetailsSectionHeader>Notes</TaskDetailsSectionHeader>
     <TaskNotesBody notes={notes} />
   </div>
 )

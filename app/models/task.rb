@@ -5,6 +5,6 @@ class Task < ApplicationRecord
   belongs_to :project
 
   def public_attributes
-    attributes.slice('id', 'text', 'completed', 'archived', 'notes').merge({ 'createdAt' => created_at, 'projectId' => project_id })
+    attributes.slice('id', 'text', 'completed', 'archived', 'notes').merge({ 'createdAt' => created_at, 'projectId' => project_id, 'dueDate' => due_date })
   end
 end

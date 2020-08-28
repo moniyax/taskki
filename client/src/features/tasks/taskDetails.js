@@ -7,8 +7,9 @@ import { taskProps } from '../../util/propTypes'
 import t from 'prop-types'
 import TaskDetailsText from './taskDetailsText'
 import TaskDetailsActions from './taskDetailsActions'
-import TaskDate from './taskDate'
+import TaskDetailsDate from './taskDetailsDate'
 import TaskNotes from './taskNotesSection'
+import TaskDetailsSchedule from './taskDetailsSchedule'
 
 const modalBackdrop = {
   position: 'absolute',
@@ -60,8 +61,9 @@ const TaskDetails = ({ task }) => {
             onClick={() => history.push(`/projects/${task.projectId}`)}
           />
           <TaskDetailsText text={text} />
+          <TaskDetailsSchedule taskId={id} />
           <TaskNotes notes={notes} />
-          <TaskDate createdAt={createdAt} />
+          <TaskDetailsDate createdAt={createdAt} />
         </div>
         <TaskDetailsActions
           id={id}
