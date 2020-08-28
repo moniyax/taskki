@@ -5,7 +5,6 @@ import t from 'prop-types'
 import { updateTaskRequest } from './taskRequests'
 import { useDispatch } from 'react-redux'
 import { guidPropType } from '../../util/propTypes'
-import moment from 'moment'
 
 const addDays = (date, days) => {
   var result = new Date(date)
@@ -72,7 +71,10 @@ const TaskDetailsSchedule = ({ taskId }) => {
       <div>
         <TaskDetailsScheduleButton label={'Today'} onClick={todayClick} />
         <TaskDetailsScheduleButton label={'Tomorrow'} onClick={tomorrowClick} />
-        <TaskDetailsScheduleButton label={'Next Week'} onClick={nextWeekClick} />
+        <TaskDetailsScheduleButton
+          label={'Next Week'}
+          onClick={nextWeekClick}
+        />
       </div>
     </div>
   )

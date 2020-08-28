@@ -6,8 +6,10 @@ class TasksController < ApplicationController
   end
 
   def index
-    project = current_user.projects.find params[:project_id]
-    tasks = project.tasks.order :created_at
+    project_id = params[:project_id]
+
+    tasks = project_id == 'today' ? current_user.due_or_today_tasks : current_user.tasks_by_project(project_id)
+
     render json: tasks.map(&:public_attributes)
   end
 

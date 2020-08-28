@@ -14,12 +14,13 @@ import { getIsProjectsFetched } from '../projects/projectsSlice'
 import { getTasksRequest } from './taskRequests'
 
 const TaskList = ({ tasks, isProjectsFetched }) => {
-  const { projectId } = useParams()
+  let { projectId } = useParams()
   const { taskId } = useParams()
   const dispatch = useDispatch()
 
   useEffect(() => {
     if (isProjectsFetched) {
+      projectId = projectId ?? 'today'
       dispatch(getTasksRequest({ projectId }))
     }
   }, [projectId, isProjectsFetched, dispatch])

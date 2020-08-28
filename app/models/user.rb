@@ -13,4 +13,21 @@ class User < ApplicationRecord
   def public_attributes
     attributes.slice('id', 'username', 'token', 'email')
   end
+
+  def due_tasks
+    tasks.where('due_date < ?', DateTime.now)
+  end
+
+  def today_tasks
+    tasks.where('due_date::TIMESTAMP::DATE = ?', DateTime.now.strftime('%Y-%m-%d'))
+  end
+
+  def due_or_today_tasks
+    due_tasks.or(today_tasks).order :created_at
+  end
+
+  def tasks_by_project(project_id)
+    project = projects.find project_id
+    project.tasks.order :created_at
+  end
 end
