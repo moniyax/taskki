@@ -36,6 +36,7 @@ const TaskList = ({ tasks, isProjectsFetched }) => {
             projectId={projectId}
             text={task.text}
             completed={task.completed}
+            dueDate={task.dueDate}
           />
         )),
     [tasks, projectId]

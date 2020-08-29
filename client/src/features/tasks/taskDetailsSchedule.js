@@ -5,6 +5,7 @@ import t from 'prop-types'
 import { updateTaskRequest } from './taskRequests'
 import { useDispatch } from 'react-redux'
 import { guidPropType } from '../../util/propTypes'
+import { useHistory } from 'react-router-dom'
 
 const addDays = (date, days) => {
   var result = new Date(date)
@@ -35,8 +36,9 @@ TaskDetailsScheduleButton.propTypes = {
   onClick: t.func,
 }
 
-const TaskDetailsSchedule = ({ taskId }) => {
+const TaskDetailsSchedule = ({ taskId, projectId }) => {
   const dispatch = useDispatch()
+  const history = useHistory()
 
   const todayClick = () => {
     dispatch(
@@ -45,15 +47,18 @@ const TaskDetailsSchedule = ({ taskId }) => {
         dueDate: new Date().toJSON(),
       })
     )
+    history.push(`/projects/${projectId}`)
   }
 
   const tomorrowClick = () => {
+    console.log('toomorrow')
     dispatch(
       updateTaskRequest({
         id: taskId,
         dueDate: addDays(new Date(), 1).toJSON(),
       })
     )
+    history.push(`/projects/${projectId}`)
   }
 
   const nextWeekClick = () => {
@@ -63,6 +68,17 @@ const TaskDetailsSchedule = ({ taskId }) => {
         dueDate: addDays(new Date(), 7).toJSON(),
       })
     )
+    history.push(`/projects/${projectId}`)
+  }
+
+  const noDateClick = () => {
+    dispatch(
+      updateTaskRequest({
+        id: taskId,
+        dueDate: null,
+      })
+    )
+    history.push(`/projects/${projectId}`)
   }
 
   return (
@@ -75,6 +91,7 @@ const TaskDetailsSchedule = ({ taskId }) => {
           label={'Next Week'}
           onClick={nextWeekClick}
         />
+        <TaskDetailsScheduleButton label={'No Date'} onClick={noDateClick} />
       </div>
     </div>
   )

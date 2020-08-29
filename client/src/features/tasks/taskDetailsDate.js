@@ -1,13 +1,13 @@
 /** @jsx jsx */
 import { jsx } from 'theme-ui'
 import { datePropType } from '../../util/propTypes'
-import moment from 'moment'
 import TaskDetailsSectionHeader from './taskDetailsSectionHeader'
+import dayjs from 'dayjs'
 
 const TaskDetailsDate = ({ createdAt }) => (
   <div>
     <TaskDetailsSectionHeader>Created On</TaskDetailsSectionHeader>
-    <div sx={{ fontSize: 2 }}>{moment(createdAt).format('MMMM Do YYYY')}</div>
+    <div sx={{ fontSize: 2 }}>{dayjs(createdAt).format('MMM D YYYY')}</div>
   </div>
 )
 

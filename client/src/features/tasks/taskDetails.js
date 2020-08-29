@@ -45,30 +45,30 @@ const closeButton = {
 
 const TaskDetails = ({ task }) => {
   const history = useHistory()
-  const { text, id, completed, createdAt, notes } = task
+  const { text, id, completed, createdAt, notes, projectId } = task
 
   return (
     <div>
       <div
         className="modalBackdrop"
         sx={modalBackdrop}
-        onClick={() => history.push(`/projects/${task.projectId}`)}
+        onClick={() => history.push(`/projects/${projectId}`)}
       ></div>
       <div className="modal" sx={modal} onClick={(e) => e.preventDefault()}>
         <div sx={{ p: 3, px: 5 }}>
           <Close
             sx={closeButton}
-            onClick={() => history.push(`/projects/${task.projectId}`)}
+            onClick={() => history.push(`/projects/${projectId}`)}
           />
           <TaskDetailsText text={text} />
-          <TaskDetailsSchedule taskId={id} />
+          <TaskDetailsSchedule taskId={id} projectId={projectId} />
           <TaskNotes notes={notes} />
           <TaskDetailsDate createdAt={createdAt} />
         </div>
         <TaskDetailsActions
           id={id}
           completed={completed}
-          projectId={task.projectId}
+          projectId={projectId}
         />
       </div>
     </div>
